@@ -1,8 +1,11 @@
+yarn add bunzz-sdk
+npm i bunzz-sdk --save
+
 import bunzz from 'bunzz-sdk';
 
 // Set your keys
-const DAPP_ID = "ea3957d6-8b53-4a0a-aa07-a85b64997f1a";
-const API_KEY = "8c10b63c-ffc6-4255-958b-b0ade73534a5";
+const DAPP_ID = "Your DApp ID";
+const API_KEY = "Your API Key";
 
 // Initialize SDK
 const handler = await bunzz.initializeHandler({
