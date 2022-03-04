@@ -1,1 +1,31 @@
-$ npm run start
+import bunzz from 'bunzz-sdk';
+
+// Set your keys
+const DAPP_ID = "ea3957d6-8b53-4a0a-aa07-a85b64997f1a";
+const API_KEY = "8c10b63c-ffc6-4255-958b-b0ade73534a5";
+
+// Initialize SDK
+const handler = await bunzz.initializeHandler({
+  dappId: DAPP_ID,
+  apiKey: API_KEY,
+});
+
+// Get a contract object
+const MODULE_NAME = 'Token (ERC20)';
+const erc20 = handler.getContract(MODULE_NAME);
+
+// Example of "Update Action"
+const mint = async (to, amount) => {
+  const signerAddress = await handler.getAddress();
+  const tx = await erc20.mint(to, amount);
+  const receipt = await tx.wait();
+
+  console.log(receipt.events);
+  console.log('Token successfully minted! Congratulation 🎉');
+};
+
+// Example of "Read Action"
+const getBalance = async (address) => {
+  const res = await erc20.balanceOf(address);
+  console.log(`The ${address}'s balance is ${res.data}`);
+};
